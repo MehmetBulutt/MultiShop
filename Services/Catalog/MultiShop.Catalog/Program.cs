@@ -1,6 +1,17 @@
+using System.Reflection;
+using MultiShop.Catalog.Services.CategoryServices;
+using MultiShop.Catalog.Services.ProductImageServices;
+using MultiShop.Catalog.Services.ProductlDetailServices;
+using MultiShop.Catalog.Services.ProductServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProblemDetailsService,ProductDetailsService>();
+builder.Services.AddScoped<IProductImageService, IProductImageService>();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
