@@ -23,35 +23,31 @@ namespace MultiShop.Catalog.Services.ProductlDetailServices
             var values = _mapper.Map<ProductDetail>(createProductDetailDto);
             await _ProductDetailCollection.InsertOneAsync(values);
         }
-
         public async Task DeleteProductDetailAsync(string id)
         {
             await _ProductDetailCollection.DeleteOneAsync(x => x.ProductDetailId == id);
         }
-
-        public Task<List<ResultProductDetailDto>> GetAllProductDetailAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<GetByIdProductDetailDto> GetByIdProductDetailAsync(string id)
         {
             var values = await _ProductDetailCollection.Find<ProductDetail>(x => x.ProductDetailId == id).FirstOrDefaultAsync();
             return _mapper.Map<GetByIdProductDetailDto>(values);
         }
 
-        public async Task<List<ResultProductDetailDto>> GetProductDetailAsync()
+        public async Task<GetByIdProductDetailDto> GetByProductIdProductDetailAsync(string id)
+        {
+            var values = await _ProductDetailCollection.Find<ProductDetail>(x => x.ProductId == id).FirstOrDefaultAsync();
+            return _mapper.Map<GetByIdProductDetailDto>(values);
+        }
+
+        public async Task<List<ResultProductDetailDto>> GettAllProductDetailAsync()
         {
             var values = await _ProductDetailCollection.Find(x => true).ToListAsync();
             return _mapper.Map<List<ResultProductDetailDto>>(values);
         }
-
         public async Task UpdateProductDetailAsync(UpdateProductDetailDto updateProductDetailDto)
         {
             var values = _mapper.Map<ProductDetail>(updateProductDetailDto);
             await _ProductDetailCollection.FindOneAndReplaceAsync(x => x.ProductDetailId == updateProductDetailDto.ProductDetailId, values);
         }
-
-       
     }
 }

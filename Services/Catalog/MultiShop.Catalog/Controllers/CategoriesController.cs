@@ -27,7 +27,7 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByCategoryId(string id)
         {
-            var values =_CategoryService.GetByIdCategoryAsync(id);
+            var values =await _CategoryService.GetByIdCategoryAsync(id);
             return Ok(values);
         }
         [HttpPost]
