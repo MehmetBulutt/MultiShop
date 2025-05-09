@@ -9,12 +9,12 @@ using MultiShop.Order.Domain.Entities;
 
 namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
 {
-    public class RemoveOrderDetailQueryHandler
+    public class RemoveOrderDetailCommandHandler
     {
 
         private readonly IRepository<OrderDetail> _repository;
 
-        public RemoveOrderDetailQueryHandler(IRepository<OrderDetail> repository)
+        public RemoveOrderDetailCommandHandler(IRepository<OrderDetail> repository)
         {
             _repository = repository;
         }
